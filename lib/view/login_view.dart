@@ -41,9 +41,7 @@ class _LoginViewState extends State<LoginView> {
             // Top Nav Bar with back arrow
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: AppTopNavBar(
-                onBack: () => Get.back(),
-              ),
+              child: AppTopNavBar(onBack: () => Get.back()),
             ),
 
             // Main Content
@@ -136,6 +134,7 @@ class _LoginViewState extends State<LoginView> {
                       hasShadow: true,
                       onPressed: () {
                         // Handle Login
+                        Get.toNamed(AppRoutes.tutorBottomNav);
                       },
                     ),
 
