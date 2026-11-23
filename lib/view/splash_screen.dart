@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Text(
               "Skill Bridge",
               style: GoogleFonts.plusJakartaSans(
-                fontSize: 28.sp,
+                fontSize: 25.sp,
                 fontWeight: FontWeight.w800,
                 color: AppColors.background,
                 height: 1.25,
