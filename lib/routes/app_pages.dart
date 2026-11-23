@@ -4,6 +4,7 @@ import 'package:my_app/view/create_account_view.dart';
 import 'package:my_app/view/login_view.dart';
 import 'package:my_app/view/onboarding_view.dart';
 import 'package:my_app/view/splash_screen.dart';
+import 'package:my_app/view/tutor_shell.dart';
 
 class AppPages {
   static const String initial = AppRoutes.splash;
@@ -27,6 +28,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.login,
       page: () => const LoginView(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.tutorBottomNav,
+      page: () => const TutorShell(),
       transition: Transition.rightToLeft,
     ),
   ];
