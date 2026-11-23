@@ -7,8 +7,6 @@ import 'package:my_app/constants/app_strings.dart';
 import 'package:my_app/routes/app_pages.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  GoogleFonts.config.allowRuntimeFetching = false;
   runApp(const MainApp());
 }
 
@@ -26,7 +24,6 @@ class MainApp extends StatelessWidget {
           title: AppStrings.appName,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            fontFamily: 'Plus Jakarta Sans',
             scaffoldBackgroundColor: AppColors.background,
             textTheme: GoogleFonts.plusJakartaSansTextTheme(
               Theme.of(context).textTheme,

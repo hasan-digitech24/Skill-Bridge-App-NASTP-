@@ -39,15 +39,15 @@ class CustomPrimaryButton extends StatelessWidget {
       height: btnHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
-        boxShadow: (hasShadow && onPressed != null && !isLoading)
-            ? [
-                BoxShadow(
-                  color: backgroundColor.withValues(alpha: 0.35),
-                  blurRadius: 18,
-                  offset: const Offset(0, 8),
-                ),
-              ]
-            : null,
+        // boxShadow: (hasShadow && onPressed != null && !isLoading)
+        //     ? [
+        //         BoxShadow(
+        //           color: backgroundColor.withValues(alpha: 0.35),
+        //           blurRadius: 18,
+        //           offset: const Offset(0, 8),
+        //         ),
+        //       ]
+        //     : null,
       ),
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
