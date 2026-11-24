@@ -6,15 +6,27 @@ import 'package:my_app/widgets/student/category_chip.dart';
 import 'package:my_app/widgets/student/featured_tutor_card.dart';
 import 'package:my_app/widgets/student/section_title.dart';
 import 'package:my_app/widgets/student/tutor_list_card.dart';
+import 'package:my_app/widgets/student/filter_sheet.dart';
+import 'package:my_app/routes/app_routes.dart';
+import 'package:my_app/models/explore_tutor_model.dart';
+import 'package:my_app/routes/app_routes.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
+  
+   void _openDetail(ExploreTutorModel tutor) {
+    Get.toNamed(AppRoutes.tutorDetail, arguments: tutor);
+  }
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ExploreController());
     final w = MediaQuery.of(context).size.width;
     final pad = w * 0.05;
+
+  //    void _openDetail(ExploreTutorModel tutor) {
+  //   Get.toNamed(AppRoutes.tutorDetail, arguments: tutor);
+  // }
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -117,7 +129,7 @@ class ExploreScreen extends StatelessWidget {
       ),
     );
   }
-  Widget _buildSearchRow(ExploreController controller, double w) {
+    Widget _buildSearchRow(ExploreController controller, double w) {
     return Row(
       children: [
         Expanded(
@@ -137,9 +149,9 @@ class ExploreScreen extends StatelessWidget {
                   child: TextField(
                     onChanged: controller.setSearch,
                     style: TextStyle(fontSize: w * 0.035),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Search tutors, subjects...',
-                      hintStyle: const TextStyle(color: AppColors.textMuted),
+                      hintStyle: TextStyle(color: AppColors.textMuted),
                       border: InputBorder.none,
                     ),
                   ),
@@ -149,14 +161,26 @@ class ExploreScreen extends StatelessWidget {
           ),
         ),
         SizedBox(width: w * 0.03),
-        Container(
-          width: w * 0.13,
-          height: w * 0.13,
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(16),
+
+        // Filter button -> opens the sheet
+        GestureDetector(
+          onTap: () {
+            controller.loadDraft();
+            Get.bottomSheet(
+              const FiltersSheet(),
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+            );
+          },
+          child: Container(
+            width: w * 0.13,
+            height: w * 0.13,
+            decoration: BoxDecoration(
+              color: AppColors.primary,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: const Icon(Icons.tune_rounded, color: AppColors.white),
           ),
-          child: const Icon(Icons.tune_rounded, color: AppColors.white),
         ),
       ],
     );
@@ -194,10 +218,11 @@ class ExploreScreen extends StatelessWidget {
       return Column(
         children: [
           for (final tutor in list)
-            TutorListCard(
+                        TutorListCard(
               tutor: tutor,
               isFavorite: controller.favorites.contains(tutor.id),
               onFavoriteTap: () => controller.toggleFavorite(tutor.id),
+              onTap: () => _openDetail(tutor),
             ),
         ],
       );

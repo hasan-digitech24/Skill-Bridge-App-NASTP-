@@ -6,6 +6,9 @@ import 'package:my_app/view/onboarding_screen.dart';
 import 'package:my_app/view/splash_screen.dart';
 import 'package:my_app/view/tutor_bottom_nav.dart';
 import 'package:my_app/view/student_bottom_nav.dart';
+import 'package:my_app/view/student_profile_screen.dart';
+import 'package:my_app/view/tutor_detail_screen.dart';
+import 'package:my_app/view/book_session_screen.dart';
 
 class AppPages {
   static const String initial = AppRoutes.splash;
@@ -41,5 +44,21 @@ class AppPages {
       page: () => const StudentShell(),
       transition: Transition.rightToLeft,
     ),
+    GetPage(
+      name: AppRoutes.studentProfile,
+      page: () => const StudentProfileScreen(),
+      transition: Transition.rightToLeft,
+    ),
+        GetPage(
+      name: AppRoutes.tutorDetail,
+      page: () => const TutorDetailScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.bookSession,
+      page: () => const BookSessionScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    
   ];
 }

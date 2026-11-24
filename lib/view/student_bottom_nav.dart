@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:my_app/controllers/student_nav_controller.dart';
 import 'package:my_app/theme/app_colors.dart';
 import 'package:my_app/view/student_dashboard_screen.dart';
+import 'package:my_app/view/sessions_screen.dart';
+import 'package:my_app/view/student_profile_screen.dart';
 
 class StudentShell extends StatelessWidget {
   const StudentShell({super.key});
@@ -11,10 +13,10 @@ class StudentShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(StudentShellController());
 
-    final pages = [
+        final pages = [
       const ExploreScreen(),
-      const Center(child: Text('Sessions (coming soon)')),
-      const Center(child: Text('Saved (coming soon)')),
+      const SessionsScreen(),  
+      const StudentProfileScreen(),
     ];
 
     return Obx(
@@ -32,7 +34,7 @@ class StudentShell extends StatelessWidget {
             BottomNavigationBarItem(
                 icon: Icon(Icons.calendar_today_outlined), label: 'Sessions'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.bookmark_border), label: 'Saved'),
+                icon: Icon(Icons.person), label: 'Profile'),
           ],
         ),
       ),
