@@ -143,12 +143,14 @@ class _LoginViewState extends State<LoginView> {
                           );
                           return;
                         } else if (_emailController.text ==
-                                "demo@student.com" &&
+                                "demo@tutor.com" &&
                             _passwordController.text == "1234") {
                           // Handle login logic here
                           Get.toNamed(AppRoutes.tutorBottomNav);
                         }
-                        // Get.toNamed(AppRoutes.tutorBottomNav);
+                        else{
+                        Get.toNamed(AppRoutes.studentHome);
+                        }
                       },
                     ),
 
