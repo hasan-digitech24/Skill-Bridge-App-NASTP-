@@ -132,7 +132,23 @@ class _LoginViewState extends State<LoginView> {
                       text: AppStrings.login,
                       hasShadow: true,
                       onPressed: () {
-                        Get.toNamed(AppRoutes.tutorBottomNav);
+                        if (_emailController.text.isEmpty ||
+                            _passwordController.text.isEmpty) {
+                          Get.snackbar(
+                            'Error',
+                            'Please enter login credentials.',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.redAccent,
+                            colorText: Colors.white,
+                          );
+                          return;
+                        } else if (_emailController.text ==
+                                "demo@student.com" &&
+                            _passwordController.text == "1234") {
+                          // Handle login logic here
+                          Get.toNamed(AppRoutes.tutorBottomNav);
+                        }
+                        // Get.toNamed(AppRoutes.tutorBottomNav);
                       },
                     ),
 
