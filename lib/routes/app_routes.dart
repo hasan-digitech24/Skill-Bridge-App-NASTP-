@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
-
-import '../views/tutor/tutor_shell.dart';
-
-class AppRoutes {
-  static const String tutorHome = '/tutor';
-
-  static Map<String, WidgetBuilder> get routes => {
-    tutorHome: (context) => const TutorShell(),
-  };
+abstract class AppRoutes {
+  static const String splash = '/splash';
+  static const String onboarding = '/onboarding';
+  static const String signUp = '/signup';
+  static const String login = '/login';
+  static const String tutorBottomNav = '/tutorBottomNav';
+    static const String studentHome = '/studentHome';
 }

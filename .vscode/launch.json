@@ -2,10 +2,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Tutor module",
+      "name": "Skill Bridge",
       "request": "launch",
       "type": "dart",
-      "program": "lib/main_tutor.dart"
+      "program": "lib/main.dart"
     }
   ]
 }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:my_app/view/schedule_screen.dart';
+import 'package:my_app/view/tutor_dashboard_screen.dart';
+import 'package:my_app/view/tutor_profile_screen.dart';
 import '../../widgets/tutor/tutor_bottom_nav.dart';
-import 'dashboard/tutor_dashboard_screen.dart';
-import 'profile/tutor_profile_screen.dart';
-import 'schedule/schedule_screen.dart';
 
 class TutorShell extends StatefulWidget {
   final VoidCallback? onLogout;
