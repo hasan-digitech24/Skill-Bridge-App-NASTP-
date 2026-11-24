@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/constants/app_colors.dart';
 import 'package:my_app/constants/app_strings.dart';
 
 class OrDivider extends StatelessWidget {
@@ -11,9 +10,12 @@ class OrDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Row(
       children: [
-        const Expanded(child: Divider(color: AppColors.divider, thickness: 1)),
+        Expanded(child: Divider(color: theme.dividerColor, thickness: 1)),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Text(
@@ -21,11 +23,11 @@ class OrDivider extends StatelessWidget {
             style: GoogleFonts.plusJakartaSans(
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
-              color: AppColors.textMuted,
+              color: colorScheme.outlineVariant,
             ),
           ),
         ),
-        const Expanded(child: Divider(color: AppColors.divider, thickness: 1)),
+        Expanded(child: Divider(color: theme.dividerColor, thickness: 1)),
       ],
     );
   }

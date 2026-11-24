@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/constants/app_colors.dart';
 
 class OnboardingBadge extends StatelessWidget {
   final Widget leading;
@@ -22,7 +21,7 @@ class OnboardingBadge extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(24.r),
           boxShadow: [
             BoxShadow(
@@ -43,7 +42,7 @@ class OnboardingBadge extends StatelessWidget {
               style: GoogleFonts.plusJakartaSans(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w700,
-                color: AppColors.black,
+                color: const Color(0xFF0F172A),
               ),
             ),
           ],

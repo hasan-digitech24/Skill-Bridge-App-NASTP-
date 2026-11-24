@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/constants/app_colors.dart';
 
 class AuthPromptText extends StatelessWidget {
   final String normalText;
@@ -18,6 +17,8 @@ class AuthPromptText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Center(
       child: RichText(
         text: TextSpan(
@@ -25,7 +26,7 @@ class AuthPromptText extends StatelessWidget {
           style: GoogleFonts.plusJakartaSans(
             fontSize: 13.sp,
             fontWeight: FontWeight.w400,
-            color: AppColors.textSecondary,
+            color: colorScheme.onSurfaceVariant,
           ),
           children: [
             TextSpan(
@@ -33,7 +34,7 @@ class AuthPromptText extends StatelessWidget {
               style: GoogleFonts.plusJakartaSans(
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w700,
-                color: AppColors.primary,
+                color: colorScheme.primary,
               ),
               recognizer: TapGestureRecognizer()..onTap = onActionTap,
             ),

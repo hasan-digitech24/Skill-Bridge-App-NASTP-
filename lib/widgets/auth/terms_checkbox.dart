@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/constants/app_colors.dart';
 import 'package:my_app/constants/app_strings.dart';
 
 class TermsCheckbox extends StatelessWidget {
@@ -21,6 +20,8 @@ class TermsCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -30,11 +31,11 @@ class TermsCheckbox extends StatelessWidget {
           child: Checkbox(
             value: isChecked,
             onChanged: (val) => onChanged(val ?? false),
-            activeColor: AppColors.primary,
+            activeColor: colorScheme.primary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5.r),
             ),
-            side: const BorderSide(color: AppColors.primary, width: 1.5),
+            side: BorderSide(color: colorScheme.primary, width: 1.5),
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
         ),
@@ -46,7 +47,7 @@ class TermsCheckbox extends StatelessWidget {
               style: GoogleFonts.plusJakartaSans(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,
-                color: AppColors.grey,
+                color: colorScheme.onSurfaceVariant,
               ),
               children: [
                 TextSpan(
@@ -54,7 +55,7 @@ class TermsCheckbox extends StatelessWidget {
                   style: GoogleFonts.plusJakartaSans(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.primary,
+                    color: colorScheme.primary,
                   ),
                   recognizer: TapGestureRecognizer()..onTap = onTermsTap,
                 ),
@@ -63,7 +64,7 @@ class TermsCheckbox extends StatelessWidget {
                   style: GoogleFonts.plusJakartaSans(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.grey,
+                    color: colorScheme.onSurfaceVariant,
                   ),
                 ),
                 TextSpan(
@@ -71,7 +72,7 @@ class TermsCheckbox extends StatelessWidget {
                   style: GoogleFonts.plusJakartaSans(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.primary,
+                    color: colorScheme.primary,
                   ),
                   recognizer: TapGestureRecognizer()..onTap = onPrivacyTap,
                 ),

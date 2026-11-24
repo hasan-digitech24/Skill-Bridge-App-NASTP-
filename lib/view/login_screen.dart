@@ -8,7 +8,6 @@ import 'package:my_app/components/custom_primary_button.dart';
 import 'package:my_app/components/custom_text_field.dart';
 import 'package:my_app/components/skill_bridge_logo.dart';
 import 'package:my_app/components/social_auth_button.dart';
-import 'package:my_app/constants/app_colors.dart';
 import 'package:my_app/constants/app_strings.dart';
 import 'package:my_app/routes/app_routes.dart';
 import 'package:my_app/widgets/auth/or_divider.dart';
@@ -33,8 +32,9 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Column(
           children: [
@@ -53,11 +53,10 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     SizedBox(height: 12.h),
 
-                    // SkillBridge Logo with White Container
-                    SkillBridgeLogo(
-                      textColor: AppColors.black,
-                      iconContainerSize: 38.w,
-                      fontSize: 20.sp,
+                    // SkillBridge Logo
+                    const SkillBridgeLogo(
+                      iconContainerSize: 38,
+                      fontSize: 20,
                       showWhiteContainer: true,
                     ),
 
@@ -69,7 +68,7 @@ class _LoginViewState extends State<LoginView> {
                       style: GoogleFonts.plusJakartaSans(
                         fontSize: 28.sp,
                         fontWeight: FontWeight.w800,
-                        color: AppColors.black,
+                        color: colorScheme.onSurface,
                         letterSpacing: -0.5,
                       ),
                     ),
@@ -82,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
                       style: GoogleFonts.plusJakartaSans(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
-                        color: AppColors.textSecondary,
+                        color: colorScheme.onSurfaceVariant,
                       ),
                     ),
 
@@ -120,7 +119,7 @@ class _LoginViewState extends State<LoginView> {
                           style: GoogleFonts.plusJakartaSans(
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.primary,
+                            color: colorScheme.primary,
                           ),
                         ),
                       ),
@@ -133,7 +132,6 @@ class _LoginViewState extends State<LoginView> {
                       text: AppStrings.login,
                       hasShadow: true,
                       onPressed: () {
-                        // Handle Login
                         Get.toNamed(AppRoutes.tutorBottomNav);
                       },
                     ),

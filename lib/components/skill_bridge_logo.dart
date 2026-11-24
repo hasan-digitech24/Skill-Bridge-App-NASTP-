@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/constants/app_assets.dart';
-import 'package:my_app/constants/app_colors.dart';
 import 'package:my_app/constants/app_strings.dart';
 
 class SkillBridgeLogo extends StatelessWidget {
-  final Color textColor;
+  final Color? textColor;
   final double? iconContainerSize;
   final double? fontSize;
   final bool showWhiteContainer;
 
   const SkillBridgeLogo({
     super.key,
-    this.textColor = AppColors.black,
+    this.textColor,
     this.iconContainerSize,
     this.fontSize,
     this.showWhiteContainer = true,
@@ -23,6 +22,8 @@ class SkillBridgeLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     final double boxSize = iconContainerSize ?? 42.w;
     final double textSz = fontSize ?? 22.sp;
+    final theme = Theme.of(context);
+    final textCol = textColor ?? theme.colorScheme.onSurface;
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -32,7 +33,11 @@ class SkillBridgeLogo extends StatelessWidget {
           width: boxSize,
           height: boxSize,
           decoration: BoxDecoration(
-            color: showWhiteContainer ? AppColors.white : Colors.transparent,
+            color: showWhiteContainer
+                ? (theme.brightness == Brightness.dark
+                      ? theme.colorScheme.surface
+                      : Colors.white)
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(12.r),
             boxShadow: showWhiteContainer
                 ? [
@@ -47,10 +52,7 @@ class SkillBridgeLogo extends StatelessWidget {
           padding: EdgeInsets.all(showWhiteContainer ? 6.r : 0),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.r),
-            child: Image.asset(
-              AppAssets.appIcon,
-              fit: BoxFit.contain,
-            ),
+            child: Image.asset(AppAssets.appIcon, fit: BoxFit.contain),
           ),
         ),
         SizedBox(width: 10.w),
@@ -59,7 +61,7 @@ class SkillBridgeLogo extends StatelessWidget {
           style: GoogleFonts.plusJakartaSans(
             fontSize: textSz,
             fontWeight: FontWeight.w700,
-            color: textColor,
+            color: textCol,
             letterSpacing: -0.3,
           ),
         ),

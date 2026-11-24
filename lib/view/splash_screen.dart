@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/constants/app_assets.dart';
-import 'package:my_app/constants/app_colors.dart';
+import 'package:my_app/constants/app_strings.dart';
 import 'package:my_app/routes/app_routes.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateToNext() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
       Get.offNamed(AppRoutes.onboarding);
     }
@@ -29,19 +29,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: colorScheme.primary,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(AppAssets.splash, width: 200.w, fit: BoxFit.contain),
             Text(
-              "Skill Bridge",
+              AppStrings.appName,
               style: GoogleFonts.plusJakartaSans(
                 fontSize: 25.sp,
                 fontWeight: FontWeight.w800,
-                color: AppColors.background,
+                color: colorScheme.onPrimary,
                 height: 1.25,
                 letterSpacing: -0.5,
               ),

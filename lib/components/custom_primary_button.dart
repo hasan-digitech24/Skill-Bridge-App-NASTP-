@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/constants/app_colors.dart';
 
 class CustomPrimaryButton extends StatelessWidget {
   final String text;
@@ -10,8 +9,8 @@ class CustomPrimaryButton extends StatelessWidget {
   final bool isLoading;
   final double? width;
   final double? height;
-  final Color backgroundColor;
-  final Color textColor;
+  final Color? backgroundColor;
+  final Color? textColor;
   final double? borderRadius;
   final bool hasShadow;
 
@@ -23,8 +22,8 @@ class CustomPrimaryButton extends StatelessWidget {
     this.isLoading = false,
     this.width,
     this.height,
-    this.backgroundColor = AppColors.primary,
-    this.textColor = AppColors.white,
+    this.backgroundColor,
+    this.textColor,
     this.borderRadius,
     this.hasShadow = true,
   });
@@ -33,6 +32,8 @@ class CustomPrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final double btnHeight = height ?? 54.h;
     final double radius = borderRadius ?? 16.r;
+    final Color bg = backgroundColor ?? Theme.of(context).colorScheme.primary;
+    final Color fg = textColor ?? Theme.of(context).colorScheme.onPrimary;
 
     return Container(
       width: width ?? double.infinity,
@@ -42,7 +43,7 @@ class CustomPrimaryButton extends StatelessWidget {
         // boxShadow: (hasShadow && onPressed != null && !isLoading)
         //     ? [
         //         BoxShadow(
-        //           color: backgroundColor.withValues(alpha: 0.35),
+        //           color: bg.withValues(alpha: 0.35),
         //           blurRadius: 18,
         //           offset: const Offset(0, 8),
         //         ),
@@ -52,9 +53,9 @@ class CustomPrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          foregroundColor: textColor,
-          disabledBackgroundColor: backgroundColor.withValues(alpha: 0.6),
+          backgroundColor: bg,
+          foregroundColor: fg,
+          disabledBackgroundColor: bg.withValues(alpha: 0.6),
           elevation: 0,
           shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
@@ -66,9 +67,9 @@ class CustomPrimaryButton extends StatelessWidget {
             ? SizedBox(
                 height: 22.h,
                 width: 22.h,
-                child: const CircularProgressIndicator(
+                child: CircularProgressIndicator(
                   strokeWidth: 2.5,
-                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.white),
+                  valueColor: AlwaysStoppedAnimation<Color>(fg),
                 ),
               )
             : Row(
@@ -80,16 +81,12 @@ class CustomPrimaryButton extends StatelessWidget {
                     style: GoogleFonts.plusJakartaSans(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w600,
-                      color: textColor,
+                      color: fg,
                     ),
                   ),
                   if (showTrailingArrow) ...[
                     SizedBox(width: 8.w),
-                    Icon(
-                      Icons.arrow_forward_rounded,
-                      size: 18.sp,
-                      color: textColor,
-                    ),
+                    Icon(Icons.arrow_forward_rounded, size: 18.sp, color: fg),
                   ],
                 ],
               ),

@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:my_app/routes/app_routes.dart';
-import 'package:my_app/view/create_account_view.dart';
-import 'package:my_app/view/login_view.dart';
-import 'package:my_app/view/onboarding_view.dart';
+import 'package:my_app/view/create_account_screen.dart';
+import 'package:my_app/view/login_screen.dart';
+import 'package:my_app/view/onboarding_screen.dart';
 import 'package:my_app/view/splash_screen.dart';
-import 'package:my_app/view/tutor_shell.dart';
+import 'package:my_app/view/tutor_bottom_nav.dart';
 
 class AppPages {
   static const String initial = AppRoutes.splash;

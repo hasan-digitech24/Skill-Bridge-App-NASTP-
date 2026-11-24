@@ -6,7 +6,6 @@ import 'package:my_app/components/app_top_nav_bar.dart';
 import 'package:my_app/components/auth_prompt_text.dart';
 import 'package:my_app/components/custom_primary_button.dart';
 import 'package:my_app/components/custom_text_field.dart';
-import 'package:my_app/constants/app_colors.dart';
 import 'package:my_app/constants/app_strings.dart';
 import 'package:my_app/routes/app_routes.dart';
 import 'package:my_app/widgets/auth/role_toggle_switch.dart';
@@ -42,8 +41,9 @@ class _CreateAccountViewState extends State<CreateAccountView> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Column(
           children: [
@@ -72,7 +72,7 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                       style: GoogleFonts.plusJakartaSans(
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w400,
-                        color: AppColors.textSecondary,
+                        color: colorScheme.onSurfaceVariant,
                       ),
                     ),
 

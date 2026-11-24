@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/constants/app_colors.dart';
 
 class AppTopNavBar extends StatelessWidget {
   final String? title;
@@ -16,23 +15,36 @@ class AppTopNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final isDark = theme.brightness == Brightness.dark;
+
     return SizedBox(
       height: 48.h,
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Back button
+          // Back button with rounded box in dark mode
           Align(
             alignment: Alignment.centerLeft,
             child: InkWell(
-              borderRadius: BorderRadius.circular(20.r),
+              borderRadius: BorderRadius.circular(12.r),
               onTap: onBack ?? () => Get.back(),
-              child: Padding(
-                padding: EdgeInsets.all(8.0.r),
+              child: Container(
+                width: 38.r,
+                height: 38.r,
+                decoration: BoxDecoration(
+                  color: isDark ? const Color(0xFF242424) : Colors.transparent,
+                  borderRadius: BorderRadius.circular(12.r),
+                  border: isDark
+                      ? Border.all(color: const Color(0xFF333333), width: 1)
+                      : null,
+                ),
+                alignment: Alignment.center,
                 child: Icon(
                   Icons.arrow_back_ios_new_rounded,
-                  size: 18.sp,
-                  color: AppColors.black,
+                  size: 16.sp,
+                  color: isDark ? Colors.white : colorScheme.onSurface,
                 ),
               ),
             ),
@@ -44,7 +56,7 @@ class AppTopNavBar extends StatelessWidget {
               style: GoogleFonts.plusJakartaSans(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w600,
-                color: AppColors.black,
+                color: colorScheme.onSurface,
               ),
             ),
         ],
