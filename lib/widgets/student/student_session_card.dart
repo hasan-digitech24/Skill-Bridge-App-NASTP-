@@ -30,26 +30,34 @@ class StudentSessionCard extends StatelessWidget {
     return 'Completed';
   }
 
-  Color get _statusBg {
-    if (session.status == StudentSessionStatus.pending) return AppColors.amberLight;
-    if (session.status == StudentSessionStatus.confirmed) return AppColors.greenLight;
-    return AppColors.lightBlue;
+  Color _statusBg(AppColorsExtension colors) {
+    if (session.status == StudentSessionStatus.pending)
+      return colors.amberLight;
+    if (session.status == StudentSessionStatus.confirmed)
+      return colors.greenLight;
+    return colors.lightBlue;
   }
 
-  Color get _statusColor {
-    if (session.status == StudentSessionStatus.pending) return AppColors.amber;
-    if (session.status == StudentSessionStatus.confirmed) return AppColors.greenDark;
-    return AppColors.primary;
+  Color _statusColor(AppColorsExtension colors) {
+    if (session.status == StudentSessionStatus.pending) return colors.amber;
+    if (session.status == StudentSessionStatus.confirmed)
+      return colors.greenDark;
+    return colors.primary;
   }
 
-  Widget _infoItem(IconData icon, String text, double w) {
+  Widget _infoItem(
+    IconData icon,
+    String text,
+    AppColorsExtension colors,
+    double w,
+  ) {
     return Row(
       children: [
-        Icon(icon, size: w * 0.045, color: AppColors.primary),
+        Icon(icon, size: w * 0.045, color: colors.primary),
         SizedBox(width: w * 0.02),
         Text(
           text,
-          style: TextStyle(fontSize: w * 0.027, color: AppColors.textGrey),
+          style: TextStyle(fontSize: w * 0.027, color: colors.textGrey),
         ),
       ],
     );
@@ -57,6 +65,7 @@ class StudentSessionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
     final start = session.start;
 
@@ -71,15 +80,19 @@ class StudentSessionCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: w * 0.04),
       padding: EdgeInsets.all(w * 0.035),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: colors.cardBg,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: AppColors.cardShadow,
+        boxShadow: colors.cardShadow,
       ),
       child: Column(
         children: [
           Row(
             children: [
-              TutorImage(path: session.image, width: w * 0.12, height: w * 0.12),
+              TutorImage(
+                path: session.image,
+                width: w * 0.12,
+                height: w * 0.12,
+              ),
               SizedBox(width: w * 0.03),
               Expanded(
                 child: Column(
@@ -92,7 +105,7 @@ class StudentSessionCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: w * 0.038,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.navy,
+                        color: colors.navy,
                       ),
                     ),
                     SizedBox(height: w * 0.008),
@@ -100,7 +113,7 @@ class StudentSessionCard extends StatelessWidget {
                       session.subject,
                       style: TextStyle(
                         fontSize: w * 0.029,
-                        color: AppColors.textGrey,
+                        color: colors.textGrey,
                       ),
                     ),
                   ],
@@ -112,7 +125,7 @@ class StudentSessionCard extends StatelessWidget {
                   vertical: w * 0.012,
                 ),
                 decoration: BoxDecoration(
-                  color: _statusBg,
+                  color: _statusBg(colors),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
@@ -120,7 +133,7 @@ class StudentSessionCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: w * 0.026,
                     fontWeight: FontWeight.w600,
-                    color: _statusColor,
+                    color: _statusColor(colors),
                   ),
                 ),
               ),
@@ -128,12 +141,12 @@ class StudentSessionCard extends StatelessWidget {
           ),
           SizedBox(height: w * 0.035),
 
-          // Grey info box: date, time, mode
+          // Info box: date, time, mode
           Container(
             width: double.infinity,
             padding: EdgeInsets.all(w * 0.035),
             decoration: BoxDecoration(
-              color: AppColors.background,
+              color: colors.background,
               borderRadius: BorderRadius.circular(14),
             ),
             child: Column(
@@ -141,10 +154,20 @@ class StudentSessionCard extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: _infoItem(Icons.calendar_today_outlined, dateText, w),
+                      child: _infoItem(
+                        Icons.calendar_today_outlined,
+                        dateText,
+                        colors,
+                        w,
+                      ),
                     ),
                     Expanded(
-                      child: _infoItem(Icons.access_time_rounded, timeText, w),
+                      child: _infoItem(
+                        Icons.access_time_rounded,
+                        timeText,
+                        colors,
+                        w,
+                      ),
                     ),
                   ],
                 ),
@@ -156,6 +179,7 @@ class StudentSessionCard extends StatelessWidget {
                           ? Icons.videocam_outlined
                           : Icons.location_on_outlined,
                       session.isOnline ? 'Online session' : 'Home session',
+                      colors,
                       w,
                     ),
                   ],
@@ -176,54 +200,63 @@ class StudentSessionCard extends StatelessWidget {
                       'Session fee',
                       style: TextStyle(
                         fontSize: w * 0.025,
-                        color: AppColors.textGrey,
+                        color: colors.textGrey,
                       ),
                     ),
                     SizedBox(height: w * 0.005),
                     Text(
-                      '\$${session.fee.toStringAsFixed(2)}',
+                      '\$${session.fee.round()}',
                       style: TextStyle(
-                        fontSize: w * 0.042,
+                        fontSize: w * 0.045,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.navy,
+                        color: colors.navy,
                       ),
                     ),
                   ],
                 ),
               ),
-              if (canCancel)
+              if (canCancel) ...[
                 GestureDetector(
                   onTap: onCancel,
-                  behavior: HitTestBehavior.opaque,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: w * 0.03),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: w * 0.04,
+                      vertical: w * 0.025,
+                    ),
+                    decoration: BoxDecoration(
+                      color: colors.cardBg,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: colors.border),
+                    ),
                     child: Text(
                       'Cancel',
                       style: TextStyle(
-                        fontSize: w * 0.028,
+                        fontSize: w * 0.03,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.red,
+                        color: colors.textGrey,
                       ),
                     ),
                   ),
                 ),
+                SizedBox(width: w * 0.025),
+              ],
               GestureDetector(
                 onTap: onPrimaryTap,
                 child: Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: w * 0.045,
-                    vertical: w * 0.03,
+                    vertical: w * 0.025,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.primary,
+                    color: colors.primary,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
                     _buttonText,
                     style: TextStyle(
-                      fontSize: w * 0.029,
+                      fontSize: w * 0.03,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.white,
+                      color: Colors.white,
                     ),
                   ),
                 ),

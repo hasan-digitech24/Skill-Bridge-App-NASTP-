@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:my_app/components/skill_bridge_logo.dart';
 import 'package:my_app/constants/app_assets.dart';
 import 'package:my_app/constants/app_colors.dart';
 import 'package:my_app/constants/app_strings.dart';
-import 'package:my_app/controllers/theme_controller.dart';
 import 'package:my_app/widgets/onboarding/onboarding_badge.dart';
 
 class OnboardingHeaderCard extends StatelessWidget {
@@ -92,7 +90,7 @@ class OnboardingHeaderCard extends StatelessWidget {
               ),
             ),
 
-            // 4. Central Content: Logo on top left + Theme Switch on top right, Book + Badges in center
+            // 4. Central Content: Logo on top left, Book + Badges in center
             SafeArea(
               bottom: false,
               child: Padding(
@@ -100,18 +98,12 @@ class OnboardingHeaderCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Row with SkillBridge Logo & Theme Testing Switch
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SkillBridgeLogo(
-                          textColor: AppColors.white,
-                          iconContainerSize: 38.w,
-                          fontSize: 20.sp,
-                          showWhiteContainer: true,
-                        ),
-                        _buildThemeToggleSwitch(),
-                      ],
+                    // SkillBridge Logo
+                    SkillBridgeLogo(
+                      textColor: AppColors.white,
+                      iconContainerSize: 38.w,
+                      fontSize: 20.sp,
+                      showWhiteContainer: true,
                     ),
 
                     const Spacer(),
@@ -170,53 +162,6 @@ class OnboardingHeaderCard extends StatelessWidget {
                     const Spacer(),
                   ],
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildThemeToggleSwitch() {
-    final themeController = Get.find<ThemeController>();
-
-    return Obx(
-      () => Container(
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.18),
-          borderRadius: BorderRadius.circular(20.r),
-          border: Border.all(
-            color: Colors.white.withValues(alpha: 0.35),
-            width: 1,
-          ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              themeController.isDarkMode
-                  ? Icons.dark_mode_rounded
-                  : Icons.light_mode_rounded,
-              color: themeController.isDarkMode
-                  ? const Color(0xFFFACC15)
-                  : Colors.white,
-              size: 16.sp,
-            ),
-            SizedBox(width: 4.w),
-            SizedBox(
-              height: 24.h,
-              child: Switch.adaptive(
-                value: themeController.isDarkMode,
-                activeThumbColor: Colors.white,
-                activeTrackColor: const Color(0xFF1E293B),
-                inactiveThumbColor: Colors.white,
-                inactiveTrackColor: Colors.white.withValues(alpha: 0.35),
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                onChanged: (val) {
-                  themeController.toggleTheme();
-                },
               ),
             ),
           ],

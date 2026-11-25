@@ -5,8 +5,8 @@ class OptionRow extends StatelessWidget {
   final List<String> labels;
   final String selected;
   final ValueChanged<String> onSelect;
-  final List<IconData?> icons; 
-  final Color? iconColor; 
+  final List<IconData?> icons;
+  final Color? iconColor;
 
   const OptionRow({
     super.key,
@@ -19,6 +19,7 @@ class OptionRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return Row(
@@ -34,13 +35,13 @@ class OptionRow extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   color: labels[i] == selected
-                      ? AppColors.lightBlue
-                      : AppColors.white,
+                      ? colors.lightBlue
+                      : colors.cardBg,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     color: labels[i] == selected
-                        ? const Color(0xFF9CC1FF)
-                        : AppColors.border,
+                        ? colors.primary
+                        : colors.border,
                   ),
                 ),
                 child: Row(
@@ -50,10 +51,11 @@ class OptionRow extends StatelessWidget {
                       Icon(
                         icons[i],
                         size: w * 0.045,
-                        color: iconColor ??
+                        color:
+                            iconColor ??
                             (labels[i] == selected
-                                ? AppColors.primary
-                                : AppColors.textGrey),
+                                ? colors.primary
+                                : colors.textGrey),
                       ),
                       SizedBox(width: w * 0.015),
                     ],
@@ -63,8 +65,8 @@ class OptionRow extends StatelessWidget {
                         fontSize: w * 0.03,
                         fontWeight: FontWeight.w600,
                         color: labels[i] == selected
-                            ? AppColors.primary
-                            : AppColors.textGrey,
+                            ? colors.primary
+                            : colors.textGrey,
                       ),
                     ),
                   ],

@@ -17,14 +17,15 @@ class TutorStatBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: w * 0.035),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: colors.cardBg,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColors.border),
+        border: Border.all(color: colors.border),
       ),
       child: Column(
         children: [
@@ -40,7 +41,7 @@ class TutorStatBox extends StatelessWidget {
                 style: TextStyle(
                   fontSize: w * 0.042,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.navy,
+                  color: colors.navy,
                 ),
               ),
             ],
@@ -48,7 +49,7 @@ class TutorStatBox extends StatelessWidget {
           SizedBox(height: w * 0.008),
           Text(
             label,
-            style: TextStyle(fontSize: w * 0.026, color: AppColors.textGrey),
+            style: TextStyle(fontSize: w * 0.026, color: colors.textGrey),
           ),
         ],
       ),

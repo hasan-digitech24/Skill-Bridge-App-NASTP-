@@ -12,21 +12,22 @@ class SessionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = Get.put(SessionsController());
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
     final pad = w * 0.05;
     final topPadding = MediaQuery.of(context).padding.top;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: colors.background,
       body: Obx(() {
         final list = c.currentSessions;
 
         return Column(
           children: [
-            // ---------- White header ----------
+            // ---------- Header ----------
             Container(
               width: double.infinity,
-              color: AppColors.white,
+              color: colors.cardBg,
               padding: EdgeInsets.fromLTRB(pad, topPadding + w * 0.05, pad, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +44,7 @@ class SessionsScreen extends StatelessWidget {
                                 fontSize: w * 0.025,
                                 fontWeight: FontWeight.w700,
                                 letterSpacing: 1,
-                                color: AppColors.primary,
+                                color: colors.primary,
                               ),
                             ),
                             SizedBox(height: w * 0.01),
@@ -52,7 +53,7 @@ class SessionsScreen extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: w * 0.07,
                                 fontWeight: FontWeight.w500,
-                                color: AppColors.navy,
+                                color: colors.navy,
                               ),
                             ),
                           ],
@@ -62,12 +63,12 @@ class SessionsScreen extends StatelessWidget {
                         width: w * 0.12,
                         height: w * 0.12,
                         decoration: BoxDecoration(
-                          color: AppColors.lightBlue,
+                          color: colors.lightBlue,
                           borderRadius: BorderRadius.circular(14),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.calendar_today_outlined,
-                          color: AppColors.primary,
+                          color: colors.primary,
                         ),
                       ),
                     ],
@@ -96,7 +97,7 @@ class SessionsScreen extends StatelessWidget {
                       fontSize: w * 0.025,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 1,
-                      color: AppColors.textMuted,
+                      color: colors.textMuted,
                     ),
                   ),
                   SizedBox(height: w * 0.035),
@@ -106,7 +107,7 @@ class SessionsScreen extends StatelessWidget {
                       width: double.infinity,
                       padding: EdgeInsets.symmetric(vertical: w * 0.1),
                       decoration: BoxDecoration(
-                        color: AppColors.white,
+                        color: colors.cardBg,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Center(
@@ -114,7 +115,7 @@ class SessionsScreen extends StatelessWidget {
                           'No sessions here yet',
                           style: TextStyle(
                             fontSize: w * 0.035,
-                            color: AppColors.textGrey,
+                            color: colors.textGrey,
                           ),
                         ),
                       ),

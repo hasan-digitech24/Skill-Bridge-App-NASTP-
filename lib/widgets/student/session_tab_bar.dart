@@ -17,6 +17,7 @@ class SessionTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return Row(
@@ -32,8 +33,8 @@ class SessionTabBar extends StatelessWidget {
                   border: Border(
                     bottom: BorderSide(
                       color: i == selectedIndex
-                          ? AppColors.primary
-                          : AppColors.divider,
+                          ? colors.primary
+                          : colors.divider,
                       width: 2,
                     ),
                   ),
@@ -49,8 +50,8 @@ class SessionTabBar extends StatelessWidget {
                             ? FontWeight.w700
                             : FontWeight.w500,
                         color: i == selectedIndex
-                            ? AppColors.primary
-                            : AppColors.navy,
+                            ? colors.primary
+                            : colors.navy,
                       ),
                     ),
                     if (badges[i] > 0) ...[
@@ -58,8 +59,8 @@ class SessionTabBar extends StatelessWidget {
                       Container(
                         width: w * 0.05,
                         height: w * 0.05,
-                        decoration: const BoxDecoration(
-                          color: AppColors.primary,
+                        decoration: BoxDecoration(
+                          color: colors.primary,
                           shape: BoxShape.circle,
                         ),
                         child: Center(
@@ -68,7 +69,7 @@ class SessionTabBar extends StatelessWidget {
                             style: TextStyle(
                               fontSize: w * 0.026,
                               fontWeight: FontWeight.w700,
-                              color: AppColors.white,
+                              color: Colors.white,
                             ),
                           ),
                         ),

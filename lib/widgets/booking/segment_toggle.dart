@@ -15,12 +15,13 @@ class SegmentToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return Container(
       padding: EdgeInsets.all(w * 0.01),
       decoration: BoxDecoration(
-        color: AppColors.background,
+        color: colors.background,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -35,11 +36,13 @@ class SegmentToggle extends StatelessWidget {
                   vertical: w * 0.02,
                 ),
                 decoration: BoxDecoration(
-                  color: i == selectedIndex ? AppColors.white : Colors.transparent,
+                  color: i == selectedIndex
+                      ? colors.cardBg
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(9),
                   border: Border.all(
                     color: i == selectedIndex
-                        ? AppColors.border
+                        ? colors.border
                         : Colors.transparent,
                   ),
                 ),
@@ -49,8 +52,8 @@ class SegmentToggle extends StatelessWidget {
                     fontSize: w * 0.027,
                     fontWeight: FontWeight.w600,
                     color: i == selectedIndex
-                        ? AppColors.primary
-                        : AppColors.textGrey,
+                        ? colors.primary
+                        : colors.textGrey,
                   ),
                 ),
               ),

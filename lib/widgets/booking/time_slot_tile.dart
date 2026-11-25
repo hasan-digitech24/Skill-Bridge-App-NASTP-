@@ -17,20 +17,21 @@ class TimeSlotTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
-    Color bgColor = AppColors.white;
-    Color borderColor = AppColors.border;
-    Color textColor = AppColors.navy;
+    Color bgColor = colors.cardBg;
+    Color borderColor = colors.border;
+    Color textColor = colors.navy;
 
     if (isBooked) {
-      bgColor = AppColors.divider;
-      borderColor = AppColors.divider;
-      textColor = AppColors.textMuted;
+      bgColor = colors.divider;
+      borderColor = colors.divider;
+      textColor = colors.textMuted;
     } else if (isSelected) {
-      bgColor = AppColors.primary;
-      borderColor = AppColors.primary;
-      textColor = AppColors.white;
+      bgColor = colors.primary;
+      borderColor = colors.primary;
+      textColor = Colors.white;
     }
 
     return GestureDetector(

@@ -19,14 +19,15 @@ class ProfileStatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: w * 0.04),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: colors.cardBg,
         borderRadius: BorderRadius.circular(18),
-        boxShadow: AppColors.cardShadow,
+        boxShadow: colors.cardShadow,
       ),
       child: Column(
         children: [
@@ -45,13 +46,13 @@ class ProfileStatCard extends StatelessWidget {
             style: TextStyle(
               fontSize: w * 0.042,
               fontWeight: FontWeight.w700,
-              color: AppColors.navy,
+              color: colors.navy,
             ),
           ),
           SizedBox(height: w * 0.005),
           Text(
             label,
-            style: TextStyle(fontSize: w * 0.026, color: AppColors.textGrey),
+            style: TextStyle(fontSize: w * 0.026, color: colors.textGrey),
           ),
         ],
       ),

@@ -9,6 +9,7 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return Row(
@@ -19,7 +20,7 @@ class SectionTitle extends StatelessWidget {
           style: TextStyle(
             fontSize: w * 0.05,
             fontWeight: FontWeight.w600,
-            color: AppColors.navy,
+            color: colors.navy,
           ),
         ),
         GestureDetector(
@@ -29,7 +30,7 @@ class SectionTitle extends StatelessWidget {
             style: TextStyle(
               fontSize: w * 0.032,
               fontWeight: FontWeight.w600,
-              color: AppColors.primary,
+              color: colors.primary,
             ),
           ),
         ),

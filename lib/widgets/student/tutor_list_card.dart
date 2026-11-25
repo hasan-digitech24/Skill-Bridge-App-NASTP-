@@ -14,15 +14,15 @@ class TutorListCard extends StatelessWidget {
     required this.tutor,
     required this.isFavorite,
     required this.onFavoriteTap,
-    required this.onTap
+    required this.onTap,
   });
 
-  Widget _tag(String text, double w) {
+  Widget _tag(String text, AppColorsExtension colors, double w) {
     return Container(
       margin: EdgeInsets.only(right: w * 0.015),
       padding: EdgeInsets.symmetric(horizontal: w * 0.02, vertical: w * 0.008),
       decoration: BoxDecoration(
-        color: AppColors.lightBlue,
+        color: colors.lightBlue,
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(
@@ -30,7 +30,7 @@ class TutorListCard extends StatelessWidget {
         style: TextStyle(
           fontSize: w * 0.026,
           fontWeight: FontWeight.w600,
-          color: AppColors.primary,
+          color: colors.primary,
         ),
       ),
     );
@@ -38,6 +38,7 @@ class TutorListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return GestureDetector(
@@ -46,16 +47,16 @@ class TutorListCard extends StatelessWidget {
         margin: EdgeInsets.only(bottom: w * 0.035),
         padding: EdgeInsets.all(w * 0.025),
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: colors.cardBg,
           borderRadius: BorderRadius.circular(18),
-          boxShadow: AppColors.cardShadow,
+          boxShadow: colors.cardShadow,
         ),
         child: Row(
           children: [
             // Photo
             TutorImage(path: tutor.image, width: w * 0.2, height: w * 0.2),
             SizedBox(width: w * 0.035),
-      
+
             // Middle: name, subject, rating, tags
             Expanded(
               child: Column(
@@ -71,30 +72,41 @@ class TutorListCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: w * 0.038,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.navy,
+                            color: colors.navy,
                           ),
                         ),
                       ),
                       SizedBox(width: w * 0.015),
-                      Icon(Icons.verified, color: AppColors.primary, size: w * 0.05),
+                      Icon(
+                        Icons.verified,
+                        color: colors.primary,
+                        size: w * 0.05,
+                      ),
                     ],
                   ),
                   SizedBox(height: w * 0.008),
                   Text(
                     tutor.subject,
-                    style: TextStyle(fontSize: w * 0.029, color: AppColors.textGrey),
+                    style: TextStyle(
+                      fontSize: w * 0.029,
+                      color: colors.textGrey,
+                    ),
                   ),
                   SizedBox(height: w * 0.012),
                   Row(
                     children: [
-                      Icon(Icons.star_rounded, color: AppColors.amber, size: w * 0.04),
+                      Icon(
+                        Icons.star_rounded,
+                        color: colors.amber,
+                        size: w * 0.04,
+                      ),
                       SizedBox(width: w * 0.01),
                       Text(
                         '${tutor.rating}',
                         style: TextStyle(
                           fontSize: w * 0.031,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.navy,
+                          color: colors.navy,
                         ),
                       ),
                       SizedBox(width: w * 0.01),
@@ -102,7 +114,7 @@ class TutorListCard extends StatelessWidget {
                         '(${tutor.reviews})',
                         style: TextStyle(
                           fontSize: w * 0.028,
-                          color: AppColors.textMuted,
+                          color: colors.textMuted,
                         ),
                       ),
                     ],
@@ -110,14 +122,14 @@ class TutorListCard extends StatelessWidget {
                   SizedBox(height: w * 0.015),
                   Row(
                     children: [
-                      if (tutor.isOnline) _tag('Online', w),
-                      if (tutor.isHome) _tag('Home', w),
+                      if (tutor.isOnline) _tag('Online', colors, w),
+                      if (tutor.isHome) _tag('Home', colors, w),
                     ],
                   ),
                 ],
               ),
             ),
-      
+
             SizedBox(
               height: w * 0.2,
               child: Column(
@@ -128,7 +140,7 @@ class TutorListCard extends StatelessWidget {
                     onTap: onFavoriteTap,
                     child: Icon(
                       isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: isFavorite ? AppColors.red : AppColors.textMuted,
+                      color: isFavorite ? colors.red : colors.textMuted,
                       size: w * 0.06,
                     ),
                   ),
@@ -140,14 +152,14 @@ class TutorListCard extends StatelessWidget {
                         style: TextStyle(
                           fontSize: w * 0.045,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.navy,
+                          color: colors.navy,
                         ),
                       ),
                       Text(
                         '/hr',
                         style: TextStyle(
                           fontSize: w * 0.026,
-                          color: AppColors.textGrey,
+                          color: colors.textGrey,
                         ),
                       ),
                     ],

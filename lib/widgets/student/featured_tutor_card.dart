@@ -11,6 +11,7 @@ class FeaturedTutorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
     final firstName = tutor.name.split(' ').first;
 
@@ -23,9 +24,9 @@ class FeaturedTutorCard extends StatelessWidget {
             flex: 11,
             child: Container(
               padding: EdgeInsets.all(w * 0.04),
-              decoration: const BoxDecoration(
-                color: Color(0xFF1E40AF),
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: colors.featuredCardBg,
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(22),
                   bottomLeft: Radius.circular(22),
                 ),
@@ -41,15 +42,15 @@ class FeaturedTutorCard extends StatelessWidget {
                       vertical: w * 0.01,
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.amber,
+                      color: colors.amber,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Text(
+                    child: const Text(
                       'TOP RATED',
                       style: TextStyle(
-                        fontSize: w * 0.025,
+                        fontSize: 10,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.white,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -60,16 +61,13 @@ class FeaturedTutorCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: w * 0.05,
                       fontWeight: FontWeight.w500,
-                      color: AppColors.white,
+                      color: Colors.white,
                       height: 1.2,
                     ),
                   ),
                   Text(
                     '${tutor.rating} rating · 2k+ students',
-                    style: TextStyle(
-                      fontSize: w * 0.026,
-                      color: AppColors.white,
-                    ),
+                    style: TextStyle(fontSize: w * 0.026, color: Colors.white),
                   ),
 
                   // Button
@@ -81,7 +79,7 @@ class FeaturedTutorCard extends StatelessWidget {
                         vertical: w * 0.02,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.white,
+                        color: colors.cardBg,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
@@ -89,7 +87,7 @@ class FeaturedTutorCard extends StatelessWidget {
                         style: TextStyle(
                           fontSize: w * 0.03,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.navy,
+                          color: colors.navy,
                         ),
                       ),
                     ),

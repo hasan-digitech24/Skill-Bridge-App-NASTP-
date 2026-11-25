@@ -12,11 +12,13 @@ class StudentShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(StudentShellController());
+    final colors = context.colors;
+    final navTheme = Theme.of(context).bottomNavigationBarTheme;
 
-        final pages = [
-      const ExploreScreen(),
-      const SessionsScreen(),  
-      const StudentProfileScreen(),
+    final pages = const [
+      ExploreScreen(),
+      SessionsScreen(),
+      StudentProfileScreen(),
     ];
 
     return Obx(
@@ -25,16 +27,17 @@ class StudentShell extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: controller.currentIndex.value,
           onTap: controller.changeTab,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: AppColors.white,
-          selectedItemColor: AppColors.primary,
-          unselectedItemColor: AppColors.textMuted,
+          type: navTheme.type ?? BottomNavigationBarType.fixed,
+          backgroundColor: navTheme.backgroundColor ?? colors.cardBg,
+          selectedItemColor: navTheme.selectedItemColor ?? colors.primary,
+          unselectedItemColor: navTheme.unselectedItemColor ?? colors.textMuted,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Explore'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.calendar_today_outlined), label: 'Sessions'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: 'Profile'),
+              icon: Icon(Icons.calendar_today_outlined),
+              label: 'Sessions',
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           ],
         ),
       ),

@@ -13,12 +13,13 @@ class TutorDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = Get.put(TutorDetailController());
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
     final pad = w * 0.05;
     final topPadding = MediaQuery.of(context).padding.top;
 
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: colors.cardBg,
       body: Column(
         children: [
           // Scrollable part
@@ -26,16 +27,16 @@ class TutorDetailScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  _buildPhoto(c, w, pad, topPadding),
+                  _buildPhoto(c, colors, w, pad, topPadding),
 
-                  // White card that slides up over the photo
+                  // Card that slides up over the photo
                   Container(
                     width: double.infinity,
                     transform: Matrix4.translationValues(0, -w * 0.07, 0),
                     padding: EdgeInsets.fromLTRB(pad, w * 0.06, pad, 0),
-                    decoration: const BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.only(
+                    decoration: BoxDecoration(
+                      color: colors.cardBg,
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(30),
                         topRight: Radius.circular(30),
                       ),
@@ -43,17 +44,17 @@ class TutorDetailScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildNameRow(c, w),
+                        _buildNameRow(c, colors, w),
                         SizedBox(height: w * 0.01),
                         Text(
                           c.designation,
                           style: TextStyle(
                             fontSize: w * 0.029,
-                            color: AppColors.textGrey,
+                            color: colors.textGrey,
                           ),
                         ),
                         SizedBox(height: w * 0.045),
-                        _buildStats(c, w),
+                        _buildStats(c, colors, w),
                         SizedBox(height: w * 0.04),
 
                         // Tabs
@@ -73,9 +74,9 @@ class TutorDetailScreen extends StatelessWidget {
                             return _buildReviews(c);
                           }
                           if (c.selectedTab.value == 2) {
-                            return _buildSchedule(c, w);
+                            return _buildSchedule(c, colors, w);
                           }
-                          return _buildAbout(c, w);
+                          return _buildAbout(c, colors, w);
                         }),
                         SizedBox(height: w * 0.05),
                       ],
@@ -87,7 +88,7 @@ class TutorDetailScreen extends StatelessWidget {
           ),
 
           // Fixed bottom bar
-          _buildBottomBar(c, w, pad),
+          _buildBottomBar(c, colors, w, pad),
         ],
       ),
     );
@@ -96,6 +97,7 @@ class TutorDetailScreen extends StatelessWidget {
   // ---------- Photo with back + heart buttons ----------
   Widget _buildPhoto(
     TutorDetailController c,
+    AppColorsExtension colors,
     double w,
     double pad,
     double topPadding,
@@ -122,12 +124,12 @@ class TutorDetailScreen extends StatelessWidget {
                   width: w * 0.105,
                   height: w * 0.105,
                   decoration: BoxDecoration(
-                    color: AppColors.white,
+                    color: colors.cardBg,
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Icon(
                     Icons.chevron_left_rounded,
-                    color: AppColors.navy,
+                    color: colors.navy,
                     size: w * 0.07,
                   ),
                 ),
@@ -140,13 +142,13 @@ class TutorDetailScreen extends StatelessWidget {
                   width: w * 0.105,
                   height: w * 0.105,
                   decoration: BoxDecoration(
-                    color: AppColors.white,
+                    color: colors.cardBg,
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Obx(
                     () => Icon(
                       c.isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: c.isFavorite ? AppColors.red : AppColors.navy,
+                      color: c.isFavorite ? colors.red : colors.navy,
                       size: w * 0.055,
                     ),
                   ),
@@ -160,7 +162,7 @@ class TutorDetailScreen extends StatelessWidget {
   }
 
   // ---------- Name, verified icon, "Available" badge ----------
-  Widget _buildNameRow(TutorDetailController c, double w) {
+  Widget _buildNameRow(TutorDetailController c, AppColorsExtension colors, double w) {
     return Row(
       children: [
         Flexible(
@@ -171,12 +173,12 @@ class TutorDetailScreen extends StatelessWidget {
             style: TextStyle(
               fontSize: w * 0.06,
               fontWeight: FontWeight.w500,
-              color: AppColors.navy,
+              color: colors.navy,
             ),
           ),
         ),
         SizedBox(width: w * 0.015),
-        Icon(Icons.verified, color: AppColors.primary, size: w * 0.055),
+        Icon(Icons.verified, color: colors.primary, size: w * 0.055),
         const Spacer(),
         Container(
           padding: EdgeInsets.symmetric(
@@ -184,7 +186,7 @@ class TutorDetailScreen extends StatelessWidget {
             vertical: w * 0.01,
           ),
           decoration: BoxDecoration(
-            color: AppColors.greenLight,
+            color: colors.greenLight,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
@@ -192,8 +194,8 @@ class TutorDetailScreen extends StatelessWidget {
               Container(
                 width: w * 0.015,
                 height: w * 0.015,
-                decoration: const BoxDecoration(
-                  color: AppColors.green,
+                decoration: BoxDecoration(
+                  color: colors.green,
                   shape: BoxShape.circle,
                 ),
               ),
@@ -203,7 +205,7 @@ class TutorDetailScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: w * 0.024,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.greenDark,
+                  color: colors.greenDark,
                 ),
               ),
             ],
@@ -214,7 +216,7 @@ class TutorDetailScreen extends StatelessWidget {
   }
 
   // ---------- 3 stat boxes ----------
-  Widget _buildStats(TutorDetailController c, double w) {
+  Widget _buildStats(TutorDetailController c, AppColorsExtension colors, double w) {
     return Row(
       children: [
         Expanded(child: TutorStatBox(value: c.students, label: 'Students')),
@@ -226,7 +228,7 @@ class TutorDetailScreen extends StatelessWidget {
             value: '${c.tutor.rating}',
             label: 'Rating',
             icon: Icons.star_rounded,
-            iconColor: AppColors.amber,
+            iconColor: colors.amber,
           ),
         ),
       ],
@@ -234,23 +236,23 @@ class TutorDetailScreen extends StatelessWidget {
   }
 
   // ---------- Small bold title used in the tabs ----------
-  Widget _title(String text, double w) {
+  Widget _title(String text, AppColorsExtension colors, double w) {
     return Text(
       text,
       style: TextStyle(
         fontSize: w * 0.04,
         fontWeight: FontWeight.w500,
-        color: AppColors.navy,
+        color: colors.navy,
       ),
     );
   }
 
   // ---------- Tab 1: About ----------
-  Widget _buildAbout(TutorDetailController c, double w) {
+  Widget _buildAbout(TutorDetailController c, AppColorsExtension colors, double w) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _title('About me', w),
+        _title('About me', colors, w),
         SizedBox(height: w * 0.025),
         Obx(
           () => Text(
@@ -261,7 +263,7 @@ class TutorDetailScreen extends StatelessWidget {
                 : TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: w * 0.03,
-              color: AppColors.textGrey,
+              color: colors.textGrey,
               height: 1.5,
             ),
           ),
@@ -275,13 +277,13 @@ class TutorDetailScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: w * 0.03,
                 fontWeight: FontWeight.w600,
-                color: AppColors.primary,
+                color: colors.primary,
               ),
             ),
           ),
         ),
         SizedBox(height: w * 0.05),
-        _title('I can help you with', w),
+        _title('I can help you with', colors, w),
         SizedBox(height: w * 0.03),
         Wrap(
           spacing: w * 0.02,
@@ -306,11 +308,11 @@ class TutorDetailScreen extends StatelessWidget {
   }
 
   // ---------- Tab 3: Schedule ----------
-  Widget _buildSchedule(TutorDetailController c, double w) {
+  Widget _buildSchedule(TutorDetailController c, AppColorsExtension colors, double w) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _title('Weekly schedule', w),
+        _title('Weekly schedule', colors, w),
         SizedBox(height: w * 0.03),
         for (final row in c.schedule)
           Container(
@@ -321,7 +323,7 @@ class TutorDetailScreen extends StatelessWidget {
               vertical: w * 0.035,
             ),
             decoration: BoxDecoration(
-              color: AppColors.background,
+              color: colors.background,
               borderRadius: BorderRadius.circular(14),
             ),
             child: Row(
@@ -332,14 +334,14 @@ class TutorDetailScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: w * 0.031,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.navy,
+                    color: colors.navy,
                   ),
                 ),
                 Text(
                   row[1],
                   style: TextStyle(
                     fontSize: w * 0.029,
-                    color: row[1] == 'Off' ? AppColors.red : AppColors.textGrey,
+                    color: row[1] == 'Off' ? colors.red : colors.textGrey,
                   ),
                 ),
               ],
@@ -350,25 +352,26 @@ class TutorDetailScreen extends StatelessWidget {
   }
 
   // ---------- Bottom bar: hourly rate + Book Session ----------
-  Widget _buildBottomBar(TutorDetailController c, double w, double pad) {
+  Widget _buildBottomBar(
+    TutorDetailController c,
+    AppColorsExtension colors,
+    double w,
+    double pad,
+  ) {
     return Container(
       padding: EdgeInsets.fromLTRB(
         pad,
         w * 0.04,
         pad,
-        w * 0.04 + MediaQueryData.fromView(
-          WidgetsBinding.instance.platformDispatcher.views.first,
-        ).padding.bottom / WidgetsBinding.instance.platformDispatcher.views.first.devicePixelRatio,
+        w * 0.04 +
+            MediaQueryData.fromView(
+                  WidgetsBinding.instance.platformDispatcher.views.first,
+                ).padding.bottom /
+                WidgetsBinding.instance.platformDispatcher.views.first.devicePixelRatio,
       ),
-      decoration: const BoxDecoration(
-        color: AppColors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x14111827),
-            blurRadius: 12,
-            offset: Offset(0, -4),
-          ),
-        ],
+      decoration: BoxDecoration(
+        color: colors.cardBg,
+        boxShadow: colors.bottomBarShadow,
       ),
       child: Row(
         children: [
@@ -377,7 +380,7 @@ class TutorDetailScreen extends StatelessWidget {
             children: [
               Text(
                 'Hourly rate',
-                style: TextStyle(fontSize: w * 0.026, color: AppColors.textGrey),
+                style: TextStyle(fontSize: w * 0.026, color: colors.textGrey),
               ),
               SizedBox(height: w * 0.008),
               Row(
@@ -388,7 +391,7 @@ class TutorDetailScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: w * 0.06,
                       fontWeight: FontWeight.w700,
-                      color: AppColors.navy,
+                      color: colors.navy,
                     ),
                   ),
                   SizedBox(width: w * 0.01),
@@ -396,7 +399,7 @@ class TutorDetailScreen extends StatelessWidget {
                     '/ hour',
                     style: TextStyle(
                       fontSize: w * 0.027,
-                      color: AppColors.textGrey,
+                      color: colors.textGrey,
                     ),
                   ),
                 ],
@@ -410,7 +413,7 @@ class TutorDetailScreen extends StatelessWidget {
               child: Container(
                 height: w * 0.135,
                 decoration: BoxDecoration(
-                  color: AppColors.primary,
+                  color: colors.primary,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: const [
                     BoxShadow(
@@ -426,7 +429,7 @@ class TutorDetailScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: w * 0.038,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.white,
+                      color: Colors.white,
                     ),
                   ),
                 ),

@@ -16,6 +16,7 @@ class DateTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return GestureDetector(
@@ -24,10 +25,10 @@ class DateTile extends StatelessWidget {
         height: w * 0.17,
         margin: EdgeInsets.symmetric(horizontal: w * 0.006),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : AppColors.white,
+          color: isSelected ? colors.primary : colors.cardBg,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isSelected ? AppColors.primary : AppColors.border,
+            color: isSelected ? colors.primary : colors.border,
           ),
           boxShadow: isSelected
               ? const [
@@ -47,7 +48,7 @@ class DateTile extends StatelessWidget {
               style: TextStyle(
                 fontSize: w * 0.022,
                 fontWeight: FontWeight.w500,
-                color: isSelected ? AppColors.white : AppColors.textGrey,
+                color: isSelected ? Colors.white : colors.textGrey,
               ),
             ),
             SizedBox(height: w * 0.012),
@@ -56,7 +57,7 @@ class DateTile extends StatelessWidget {
               style: TextStyle(
                 fontSize: w * 0.045,
                 fontWeight: FontWeight.w700,
-                color: isSelected ? AppColors.white : AppColors.navy,
+                color: isSelected ? Colors.white : colors.navy,
               ),
             ),
           ],

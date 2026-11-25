@@ -15,6 +15,7 @@ class StepHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return Row(
@@ -23,7 +24,7 @@ class StepHeader extends StatelessWidget {
           width: w * 0.065,
           height: w * 0.065,
           decoration: BoxDecoration(
-            color: AppColors.lightBlue,
+            color: colors.lightBlue,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Center(
@@ -32,7 +33,7 @@ class StepHeader extends StatelessWidget {
               style: TextStyle(
                 fontSize: w * 0.025,
                 fontWeight: FontWeight.w700,
-                color: AppColors.primary,
+                color: colors.primary,
               ),
             ),
           ),
@@ -43,11 +44,11 @@ class StepHeader extends StatelessWidget {
           style: TextStyle(
             fontSize: w * 0.04,
             fontWeight: FontWeight.w500,
-            color: AppColors.navy,
+            color: colors.navy,
           ),
         ),
         const Spacer(),
-        if (trailing != null) trailing!,
+        ?trailing,
       ],
     );
   }

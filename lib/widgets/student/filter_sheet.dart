@@ -17,15 +17,16 @@ class FiltersSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = Get.find<ExploreController>();
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
     final pad = w * 0.06;
     final bottomSafe = MediaQuery.of(context).padding.bottom;
 
     return Container(
       padding: EdgeInsets.fromLTRB(pad, w * 0.03, pad, bottomSafe + w * 0.05),
-      decoration: const BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: colors.cardBg,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
@@ -40,7 +41,7 @@ class FiltersSheet extends StatelessWidget {
                 width: w * 0.1,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: AppColors.border,
+                  color: colors.border,
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -55,7 +56,7 @@ class FiltersSheet extends StatelessWidget {
                   style: TextStyle(
                     fontSize: w * 0.055,
                     fontWeight: FontWeight.w500,
-                    color: AppColors.navy,
+                    color: colors.navy,
                   ),
                 ),
                 GestureDetector(
@@ -65,7 +66,7 @@ class FiltersSheet extends StatelessWidget {
                     style: TextStyle(
                       fontSize: w * 0.032,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.primary,
+                      color: colors.primary,
                     ),
                   ),
                 ),
@@ -81,7 +82,7 @@ class FiltersSheet extends StatelessWidget {
                 style: TextStyle(
                   fontSize: w * 0.035,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.primary,
+                  color: colors.primary,
                 ),
               ),
               child: Column(
@@ -91,8 +92,8 @@ class FiltersSheet extends StatelessWidget {
                     min: 15,
                     max: 100,
                     divisions: 17,
-                    activeColor: AppColors.primary,
-                    inactiveColor: AppColors.border,
+                    activeColor: colors.primary,
+                    inactiveColor: colors.border,
                     onChanged: (values) => c.draftPrice.value = values,
                   ),
                   Row(
@@ -102,14 +103,14 @@ class FiltersSheet extends StatelessWidget {
                         '\$15',
                         style: TextStyle(
                           fontSize: w * 0.027,
-                          color: AppColors.textMuted,
+                          color: colors.textMuted,
                         ),
                       ),
                       Text(
                         '\$100+',
                         style: TextStyle(
                           fontSize: w * 0.027,
-                          color: AppColors.textMuted,
+                          color: colors.textMuted,
                         ),
                       ),
                     ],
@@ -143,7 +144,7 @@ class FiltersSheet extends StatelessWidget {
                   Icons.star_rounded,
                   Icons.star_rounded,
                 ],
-                iconColor: AppColors.amber,
+                iconColor: colors.amber,
                 selected: '${c.draftRating.value.toStringAsFixed(1)}+',
                 onSelect: (label) {
                   c.draftRating.value = double.parse(label.replaceAll('+', ''));
@@ -162,11 +163,7 @@ class FiltersSheet extends StatelessWidget {
             ),
 
             // Divider above the buttons
-            Container(
-              width: double.infinity,
-              height: 1,
-              color: AppColors.border,
-            ),
+            Container(width: double.infinity, height: 1, color: colors.border),
             SizedBox(height: w * 0.045),
 
             // Bottom buttons
@@ -180,9 +177,9 @@ class FiltersSheet extends StatelessWidget {
                     child: Container(
                       height: w * 0.13,
                       decoration: BoxDecoration(
-                        color: AppColors.white,
+                        color: colors.cardBg,
                         borderRadius: BorderRadius.circular(14),
-                        border: Border.all(color: AppColors.border),
+                        border: Border.all(color: colors.border),
                       ),
                       child: Center(
                         child: Text(
@@ -190,7 +187,7 @@ class FiltersSheet extends StatelessWidget {
                           style: TextStyle(
                             fontSize: w * 0.036,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.navy,
+                            color: colors.navy,
                           ),
                         ),
                       ),
@@ -210,7 +207,7 @@ class FiltersSheet extends StatelessWidget {
                     child: Container(
                       height: w * 0.13,
                       decoration: BoxDecoration(
-                        color: AppColors.primary,
+                        color: colors.primary,
                         borderRadius: BorderRadius.circular(14),
                         boxShadow: const [
                           BoxShadow(
@@ -223,10 +220,10 @@ class FiltersSheet extends StatelessWidget {
                       child: Center(
                         child: Text(
                           'Show ${c.draftCount} Tutors',
-                          style: TextStyle(
-                            fontSize: w * 0.036,
+                          style: const TextStyle(
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.white,
+                            color: Colors.white,
                           ),
                         ),
                       ),

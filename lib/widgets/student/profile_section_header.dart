@@ -13,6 +13,7 @@ class ProfileSectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return Column(
@@ -24,7 +25,7 @@ class ProfileSectionHeader extends StatelessWidget {
             fontSize: w * 0.025,
             fontWeight: FontWeight.w700,
             letterSpacing: 1,
-            color: AppColors.primary,
+            color: colors.primary,
           ),
         ),
         SizedBox(height: w * 0.01),
@@ -33,7 +34,7 @@ class ProfileSectionHeader extends StatelessWidget {
           style: TextStyle(
             fontSize: w * 0.052,
             fontWeight: FontWeight.w500,
-            color: AppColors.navy,
+            color: colors.navy,
           ),
         ),
       ],

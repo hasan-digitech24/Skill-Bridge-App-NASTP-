@@ -27,6 +27,7 @@ class ProfileMenuTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return GestureDetector(
@@ -60,7 +61,7 @@ class ProfileMenuTile extends StatelessWidget {
                         style: TextStyle(
                           fontSize: w * 0.033,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.navy,
+                          color: colors.navy,
                         ),
                       ),
                       SizedBox(height: w * 0.008),
@@ -68,7 +69,7 @@ class ProfileMenuTile extends StatelessWidget {
                         subtitle,
                         style: TextStyle(
                           fontSize: w * 0.026,
-                          color: AppColors.textMuted,
+                          color: colors.textMuted,
                         ),
                       ),
                       if (extra != null) ...[
@@ -83,13 +84,12 @@ class ProfileMenuTile extends StatelessWidget {
                     Icon(
                       Icons.chevron_right_rounded,
                       size: w * 0.06,
-                      color: AppColors.textMuted,
+                      color: colors.textMuted,
                     ),
               ],
             ),
           ),
-          if (showDivider)
-            Container(height: 1, color: AppColors.divider),
+          if (showDivider) Container(height: 1, color: colors.divider),
         ],
       ),
     );

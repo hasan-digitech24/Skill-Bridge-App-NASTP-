@@ -10,6 +10,7 @@ class ReviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return Container(
@@ -17,15 +18,20 @@ class ReviewCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: w * 0.03),
       padding: EdgeInsets.all(w * 0.035),
       decoration: BoxDecoration(
-        color: AppColors.background,
+        color: colors.background,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: colors.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              InitialsAvatar(name: review.studentName, size: w * 0.09, radius: 10),
+              InitialsAvatar(
+                name: review.studentName,
+                size: w * 0.09,
+                radius: 10,
+              ),
               SizedBox(width: w * 0.025),
               Expanded(
                 child: Column(
@@ -36,27 +42,27 @@ class ReviewCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: w * 0.031,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.navy,
+                        color: colors.navy,
                       ),
                     ),
                     Text(
                       review.timeAgo,
                       style: TextStyle(
                         fontSize: w * 0.025,
-                        color: AppColors.textMuted,
+                        color: colors.textMuted,
                       ),
                     ),
                   ],
                 ),
               ),
-              Icon(Icons.star_rounded, color: AppColors.amber, size: w * 0.04),
+              Icon(Icons.star_rounded, color: colors.amber, size: w * 0.04),
               SizedBox(width: w * 0.008),
               Text(
                 review.rating.toStringAsFixed(1),
                 style: TextStyle(
                   fontSize: w * 0.03,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.navy,
+                  color: colors.navy,
                 ),
               ),
             ],
@@ -66,7 +72,7 @@ class ReviewCard extends StatelessWidget {
             '"${review.comment}"',
             style: TextStyle(
               fontSize: w * 0.028,
-              color: AppColors.textGrey,
+              color: colors.textGrey,
               height: 1.4,
             ),
           ),

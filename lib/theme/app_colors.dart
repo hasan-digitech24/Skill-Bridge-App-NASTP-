@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/theme/app_colors_extension.dart';
+
+export 'package:my_app/theme/app_colors_extension.dart';
 
 class AppColors {
+  /// Theme-aware accessor: gets dynamic colors for the active theme
+  static AppColorsExtension of(BuildContext context) {
+    return Theme.of(context).extension<AppColorsExtension>() ?? AppColorsExtension.light;
+  }
+
+  // Static constants retained for compatibility
   static const Color primary = Color(0xFF2863F0);
   static const Color navy = Color(0xFF111827);
   static const Color navyLight = Color(0xFF1F2937);

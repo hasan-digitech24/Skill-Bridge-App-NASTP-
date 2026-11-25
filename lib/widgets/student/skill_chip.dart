@@ -8,12 +8,13 @@ class SkillChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: w * 0.03, vertical: w * 0.015),
       decoration: BoxDecoration(
-        color: AppColors.lightBlue,
+        color: colors.lightBlue,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
@@ -21,7 +22,7 @@ class SkillChip extends StatelessWidget {
         style: TextStyle(
           fontSize: w * 0.028,
           fontWeight: FontWeight.w600,
-          color: AppColors.primary,
+          color: colors.primary,
         ),
       ),
     );

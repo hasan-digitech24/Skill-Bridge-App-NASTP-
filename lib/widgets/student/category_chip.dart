@@ -15,18 +15,22 @@ class CategoryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
 
     return GestureDetector(
       onTap: onTap,
       child: Container(
         margin: EdgeInsets.only(right: w * 0.025),
-        padding: EdgeInsets.symmetric(horizontal: w * 0.05, vertical: w * 0.025),
+        padding: EdgeInsets.symmetric(
+          horizontal: w * 0.05,
+          vertical: w * 0.025,
+        ),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : AppColors.white,
+          color: isSelected ? colors.primary : colors.cardBg,
           borderRadius: BorderRadius.circular(30),
           border: Border.all(
-            color: isSelected ? AppColors.primary : AppColors.border,
+            color: isSelected ? colors.primary : colors.border,
           ),
         ),
         child: Text(
@@ -34,7 +38,7 @@ class CategoryChip extends StatelessWidget {
           style: TextStyle(
             fontSize: w * 0.034,
             fontWeight: FontWeight.w600,
-            color: isSelected ? AppColors.white : AppColors.navy,
+            color: isSelected ? Colors.white : colors.navy,
           ),
         ),
       ),

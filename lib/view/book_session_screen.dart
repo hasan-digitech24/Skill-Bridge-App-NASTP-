@@ -14,15 +14,16 @@ class BookSessionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = Get.put(BookSessionController());
+    final colors = context.colors;
     final w = MediaQuery.of(context).size.width;
     final pad = w * 0.05;
 
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: colors.cardBg,
       body: SafeArea(
         child: Column(
           children: [
-            _buildTopBar(w, pad),
+            _buildTopBar(colors, w, pad),
 
             // Scrollable content
             Expanded(
@@ -32,15 +33,15 @@ class BookSessionScreen extends StatelessWidget {
                   () => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildTutorCard(c, w),
+                      _buildTutorCard(c, colors, w),
                       SizedBox(height: w * 0.06),
-                      _buildDateSection(c, w),
+                      _buildDateSection(c, colors, w),
                       SizedBox(height: w * 0.06),
-                      _buildTimeSection(c, w),
+                      _buildTimeSection(c, colors, w),
                       SizedBox(height: w * 0.06),
-                      _buildDetailsSection(c, w),
+                      _buildDetailsSection(c, colors, w),
                       SizedBox(height: w * 0.05),
-                      _buildFeeSummary(c, w),
+                      _buildFeeSummary(c, colors, w),
                     ],
                   ),
                 ),
@@ -48,7 +49,7 @@ class BookSessionScreen extends StatelessWidget {
             ),
 
             // Fixed bottom button
-            _buildBottomButton(c, w, pad),
+            _buildBottomButton(c, colors, w, pad),
           ],
         ),
       ),
@@ -56,7 +57,7 @@ class BookSessionScreen extends StatelessWidget {
   }
 
   // ---------- Top bar ----------
-  Widget _buildTopBar(double w, double pad) {
+  Widget _buildTopBar(AppColorsExtension colors, double w, double pad) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: pad, vertical: w * 0.03),
       child: Row(
@@ -68,7 +69,7 @@ class BookSessionScreen extends StatelessWidget {
               child: Icon(
                 Icons.chevron_left_rounded,
                 size: w * 0.075,
-                color: AppColors.navy,
+                color: colors.navy,
               ),
             ),
           ),
@@ -79,7 +80,7 @@ class BookSessionScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: w * 0.045,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.navy,
+                  color: colors.navy,
                 ),
               ),
             ),
@@ -91,14 +92,18 @@ class BookSessionScreen extends StatelessWidget {
   }
 
   // ---------- Tutor summary card ----------
-  Widget _buildTutorCard(BookSessionController c, double w) {
+  Widget _buildTutorCard(
+    BookSessionController c,
+    AppColorsExtension colors,
+    double w,
+  ) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(w * 0.035),
       decoration: BoxDecoration(
-        color: AppColors.background,
+        color: colors.background,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppColors.border),
+        border: Border.all(color: colors.border),
       ),
       child: Row(
         children: [
@@ -118,29 +123,37 @@ class BookSessionScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: w * 0.04,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.navy,
+                          color: colors.navy,
                         ),
                       ),
                     ),
                     SizedBox(width: w * 0.015),
-                    Icon(Icons.verified, color: AppColors.primary, size: w * 0.045),
+                    Icon(
+                      Icons.verified,
+                      color: colors.primary,
+                      size: w * 0.045,
+                    ),
                   ],
                 ),
                 SizedBox(height: w * 0.008),
                 Text(
                   c.tutor.subject,
-                  style: TextStyle(fontSize: w * 0.029, color: AppColors.textGrey),
+                  style: TextStyle(fontSize: w * 0.029, color: colors.textGrey),
                 ),
                 SizedBox(height: w * 0.015),
                 Row(
                   children: [
-                    Icon(Icons.star_rounded, color: AppColors.amber, size: w * 0.04),
+                    Icon(
+                      Icons.star_rounded,
+                      color: colors.amber,
+                      size: w * 0.04,
+                    ),
                     SizedBox(width: w * 0.01),
                     Text(
                       '${c.tutor.rating} · \$${c.tutor.price.round()}/hr',
                       style: TextStyle(
                         fontSize: w * 0.028,
-                        color: AppColors.textGrey,
+                        color: colors.textGrey,
                       ),
                     ),
                   ],
@@ -154,7 +167,11 @@ class BookSessionScreen extends StatelessWidget {
   }
 
   // ---------- 01 Select a date ----------
-  Widget _buildDateSection(BookSessionController c, double w) {
+  Widget _buildDateSection(
+    BookSessionController c,
+    AppColorsExtension colors,
+    double w,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -163,7 +180,7 @@ class BookSessionScreen extends StatelessWidget {
           title: 'Select a date',
           trailing: Text(
             c.monthLabel,
-            style: TextStyle(fontSize: w * 0.028, color: AppColors.textGrey),
+            style: TextStyle(fontSize: w * 0.028, color: colors.textGrey),
           ),
         ),
         SizedBox(height: w * 0.035),
@@ -184,7 +201,11 @@ class BookSessionScreen extends StatelessWidget {
   }
 
   // ---------- 02 Choose a time ----------
-  Widget _buildTimeSection(BookSessionController c, double w) {
+  Widget _buildTimeSection(
+    BookSessionController c,
+    AppColorsExtension colors,
+    double w,
+  ) {
     // Build the grid: 3 tiles per row
     final rows = <Widget>[];
     for (int start = 0; start < c.slots.length; start += 3) {
@@ -219,13 +240,13 @@ class BookSessionScreen extends StatelessWidget {
               vertical: w * 0.01,
             ),
             decoration: BoxDecoration(
-              color: AppColors.background,
+              color: colors.background,
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: AppColors.border),
+              border: Border.all(color: colors.border),
             ),
             child: Text(
               c.timezoneLabel,
-              style: TextStyle(fontSize: w * 0.025, color: AppColors.textGrey),
+              style: TextStyle(fontSize: w * 0.025, color: colors.textGrey),
             ),
           ),
         ),
@@ -237,18 +258,24 @@ class BookSessionScreen extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _legendItem('Available', AppColors.white, AppColors.border, w),
+            _legendItem('Available', colors.cardBg, colors.border, colors, w),
             SizedBox(width: w * 0.04),
-            _legendItem('Selected', AppColors.primary, AppColors.primary, w),
+            _legendItem('Selected', colors.primary, colors.primary, colors, w),
             SizedBox(width: w * 0.04),
-            _legendItem('Booked', AppColors.divider, AppColors.divider, w),
+            _legendItem('Booked', colors.divider, colors.divider, colors, w),
           ],
         ),
       ],
     );
   }
 
-  Widget _legendItem(String text, Color fill, Color border, double w) {
+  Widget _legendItem(
+    String text,
+    Color fill,
+    Color border,
+    AppColorsExtension colors,
+    double w,
+  ) {
     return Row(
       children: [
         Container(
@@ -263,14 +290,18 @@ class BookSessionScreen extends StatelessWidget {
         SizedBox(width: w * 0.012),
         Text(
           text,
-          style: TextStyle(fontSize: w * 0.024, color: AppColors.textGrey),
+          style: TextStyle(fontSize: w * 0.024, color: colors.textGrey),
         ),
       ],
     );
   }
 
   // ---------- 03 Session details ----------
-  Widget _buildDetailsSection(BookSessionController c, double w) {
+  Widget _buildDetailsSection(
+    BookSessionController c,
+    AppColorsExtension colors,
+    double w,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -279,9 +310,9 @@ class BookSessionScreen extends StatelessWidget {
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: colors.cardBg,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.border),
+            border: Border.all(color: colors.border),
           ),
           child: Column(
             children: [
@@ -294,6 +325,7 @@ class BookSessionScreen extends StatelessWidget {
                       child: _labelColumn(
                         'Learning mode',
                         'Choose how you\'ll meet',
+                        colors,
                         w,
                       ),
                     ),
@@ -305,7 +337,7 @@ class BookSessionScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(height: 1, color: AppColors.divider),
+              Container(height: 1, color: colors.divider),
 
               // Duration
               Padding(
@@ -316,21 +348,28 @@ class BookSessionScreen extends StatelessWidget {
                       child: _labelColumn(
                         'Duration',
                         'Length of your session',
+                        colors,
                         w,
                       ),
                     ),
-                    _roundButton(Icons.remove, c.decreaseHours, false, w),
+                    _roundButton(
+                      Icons.remove,
+                      c.decreaseHours,
+                      false,
+                      colors,
+                      w,
+                    ),
                     SizedBox(width: w * 0.03),
                     Text(
                       c.durationText,
                       style: TextStyle(
                         fontSize: w * 0.031,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.navy,
+                        color: colors.navy,
                       ),
                     ),
                     SizedBox(width: w * 0.03),
-                    _roundButton(Icons.add, c.increaseHours, true, w),
+                    _roundButton(Icons.add, c.increaseHours, true, colors, w),
                   ],
                 ),
               ),
@@ -341,7 +380,12 @@ class BookSessionScreen extends StatelessWidget {
     );
   }
 
-  Widget _labelColumn(String title, String subtitle, double w) {
+  Widget _labelColumn(
+    String title,
+    String subtitle,
+    AppColorsExtension colors,
+    double w,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -350,46 +394,56 @@ class BookSessionScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: w * 0.031,
             fontWeight: FontWeight.w600,
-            color: AppColors.navy,
+            color: colors.navy,
           ),
         ),
         SizedBox(height: w * 0.008),
         Text(
           subtitle,
-          style: TextStyle(fontSize: w * 0.025, color: AppColors.textMuted),
+          style: TextStyle(fontSize: w * 0.025, color: colors.textMuted),
         ),
       ],
     );
   }
 
   // Round "-" / "+" button
-  Widget _roundButton(IconData icon, VoidCallback onTap, bool filled, double w) {
+  Widget _roundButton(
+    IconData icon,
+    VoidCallback onTap,
+    bool filled,
+    AppColorsExtension colors,
+    double w,
+  ) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: w * 0.08,
         height: w * 0.08,
         decoration: BoxDecoration(
-          color: filled ? AppColors.primary : AppColors.white,
+          color: filled ? colors.primary : colors.cardBg,
           shape: BoxShape.circle,
-          border: Border.all(color: AppColors.primary, width: 1.5),
+          border: Border.all(color: colors.primary, width: 1.5),
         ),
         child: Icon(
           icon,
           size: w * 0.045,
-          color: filled ? AppColors.white : AppColors.primary,
+          color: filled ? Colors.white : colors.primary,
         ),
       ),
     );
   }
 
   // ---------- Fee summary ----------
-  Widget _buildFeeSummary(BookSessionController c, double w) {
+  Widget _buildFeeSummary(
+    BookSessionController c,
+    AppColorsExtension colors,
+    double w,
+  ) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(w * 0.04),
       decoration: BoxDecoration(
-        color: AppColors.background,
+        color: colors.background,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -400,23 +454,41 @@ class BookSessionScreen extends StatelessWidget {
             style: TextStyle(
               fontSize: w * 0.033,
               fontWeight: FontWeight.w600,
-              color: AppColors.navy,
+              color: colors.navy,
             ),
           ),
           SizedBox(height: w * 0.03),
-          _feeRow(c.feeLabel, '\$${c.sessionFee.toStringAsFixed(2)}', w, false),
+          _feeRow(
+            c.feeLabel,
+            '\$${c.sessionFee.toStringAsFixed(2)}',
+            colors,
+            w,
+            false,
+          ),
           SizedBox(height: w * 0.02),
-          _feeRow('Service fee', '\$${c.serviceFee.toStringAsFixed(2)}', w, false),
+          _feeRow(
+            'Service fee',
+            '\$${c.serviceFee.toStringAsFixed(2)}',
+            colors,
+            w,
+            false,
+          ),
           SizedBox(height: w * 0.03),
-          Container(height: 1, color: AppColors.border),
+          Container(height: 1, color: colors.border),
           SizedBox(height: w * 0.03),
-          _feeRow('Total', '\$${c.total.toStringAsFixed(2)}', w, true),
+          _feeRow('Total', '\$${c.total.toStringAsFixed(2)}', colors, w, true),
         ],
       ),
     );
   }
 
-  Widget _feeRow(String label, String value, double w, bool isBold) {
+  Widget _feeRow(
+    String label,
+    String value,
+    AppColorsExtension colors,
+    double w,
+    bool isBold,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -425,7 +497,7 @@ class BookSessionScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: isBold ? w * 0.033 : w * 0.028,
             fontWeight: isBold ? FontWeight.w600 : FontWeight.w400,
-            color: isBold ? AppColors.navy : AppColors.textGrey,
+            color: isBold ? colors.navy : colors.textGrey,
           ),
         ),
         Text(
@@ -433,7 +505,7 @@ class BookSessionScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: isBold ? w * 0.04 : w * 0.028,
             fontWeight: isBold ? FontWeight.w700 : FontWeight.w500,
-            color: AppColors.navy,
+            color: isBold ? colors.primary : colors.navy,
           ),
         ),
       ],
@@ -441,17 +513,22 @@ class BookSessionScreen extends StatelessWidget {
   }
 
   // ---------- Bottom button ----------
-  Widget _buildBottomButton(BookSessionController c, double w, double pad) {
+  Widget _buildBottomButton(
+    BookSessionController c,
+    AppColorsExtension colors,
+    double w,
+    double pad,
+  ) {
     return Container(
       padding: EdgeInsets.fromLTRB(pad, w * 0.03, pad, w * 0.04),
-      color: AppColors.white,
+      color: colors.cardBg,
       child: GestureDetector(
         onTap: c.confirmBooking,
         child: Container(
           width: double.infinity,
           height: w * 0.135,
           decoration: BoxDecoration(
-            color: AppColors.primary,
+            color: colors.primary,
             borderRadius: BorderRadius.circular(16),
             boxShadow: const [
               BoxShadow(
@@ -468,7 +545,7 @@ class BookSessionScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: w * 0.038,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.white,
+                  color: Colors.white,
                 ),
               ),
             ),
