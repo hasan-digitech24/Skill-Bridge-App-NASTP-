@@ -267,18 +267,68 @@ class StudentProfileScreen extends StatelessWidget {
           // Avatar + name + email
           Row(
             children: [
-              Container(
-                padding: EdgeInsets.all(w * 0.008),
-                decoration: BoxDecoration(
-                  color: const Color(0x66FFFFFF),
-                  borderRadius: BorderRadius.circular(22),
-                ),
-                child: TutorImage(
-                  path: 'assets/png/jamie.png',
-                  width: w * 0.2,
-                  height: w * 0.2,
-                  borderRadius: BorderRadius.circular(18),
-                ),
+                          // Avatar + edit button
+              Column(
+                children: [
+                  GestureDetector(
+                    onTap: c.openPhotoSheet,
+                    child: Container(
+                      padding: EdgeInsets.all(w * 0.008),
+                      decoration: BoxDecoration(
+                        color: const Color(0x66FFFFFF),
+                        borderRadius: BorderRadius.circular(22),
+                      ),
+                      child: Obx(
+                        () => Container(
+                          width: w * 0.2,
+                          height: w * 0.2,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            image: DecorationImage(
+                              image: c.imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: w * 0.02),
+
+                  // Edit photo button
+                  GestureDetector(
+                    onTap: c.openPhotoSheet,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: w * 0.025,
+                        vertical: w * 0.012,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.photo_camera_outlined,
+                            size: w * 0.035,
+                            color: AppColors.primary,
+                          ),
+                          SizedBox(width: w * 0.01),
+                          Text(
+                            'Edit photo',
+                            style: TextStyle(
+                              fontSize: w * 0.025,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(width: w * 0.04),
               Expanded(
