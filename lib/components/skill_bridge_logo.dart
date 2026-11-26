@@ -9,6 +9,8 @@ class SkillBridgeLogo extends StatelessWidget {
   final double? iconContainerSize;
   final double? fontSize;
   final bool showWhiteContainer;
+    final bool isShowText;
+
 
   const SkillBridgeLogo({
     super.key,
@@ -16,6 +18,7 @@ class SkillBridgeLogo extends StatelessWidget {
     this.iconContainerSize,
     this.fontSize,
     this.showWhiteContainer = true,
+    this.isShowText = true,
   });
 
   @override
@@ -56,12 +59,13 @@ class SkillBridgeLogo extends StatelessWidget {
           ),
         ),
         SizedBox(width: 10.w),
-        Text(
-          AppStrings.appName,
-          style: GoogleFonts.plusJakartaSans(
-            fontSize: textSz,
-            fontWeight: FontWeight.w700,
-            color: textCol,
+        if (isShowText)
+          Text(
+            AppStrings.appName,
+            style: GoogleFonts.plusJakartaSans(
+              fontSize: textSz,
+              fontWeight: FontWeight.w700,
+              color: textCol,
             letterSpacing: -0.3,
           ),
         ),

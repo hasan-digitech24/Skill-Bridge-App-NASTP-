@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/components/skill_bridge_logo.dart';
 import 'package:my_app/constants/app_assets.dart';
 import 'package:my_app/constants/app_strings.dart';
 import 'package:my_app/routes/app_routes.dart';
@@ -37,11 +38,17 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(AppAssets.splash, width: 200.w, fit: BoxFit.contain),
+            SkillBridgeLogo(
+              iconContainerSize: 80,
+              fontSize: 26,
+              showWhiteContainer: true,
+              isShowText: false,
+            ),
+            SizedBox(height: 12.h),
             Text(
               AppStrings.appName,
               style: GoogleFonts.plusJakartaSans(
-                fontSize: 25.sp,
+                fontSize: 28.sp,
                 fontWeight: FontWeight.w800,
                 color: colorScheme.onPrimary,
                 height: 1.25,
@@ -51,6 +58,24 @@ class _SplashScreenState extends State<SplashScreen> {
           ],
         ),
       ),
+      // Center(
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Image.asset(AppAssets.splash, width: 200.w, fit: BoxFit.contain),
+      //       Text(
+      //         AppStrings.appName,
+      //         style: GoogleFonts.plusJakartaSans(
+      //           fontSize: 25.sp,
+      //           fontWeight: FontWeight.w800,
+      //           color: colorScheme.onPrimary,
+      //           height: 1.25,
+      //           letterSpacing: -0.5,
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
